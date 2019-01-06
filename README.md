@@ -1,18 +1,18 @@
-# js和iOS交互通信之jsbridge篇
+# `js`和`iOS`交互通信之`jsbridge`篇
 
 ## 前言
 
 本篇文章和
-[iOS WebView和JS的交互](https://www.jianshu.com/p/3fea43b882eb)都是iOS和js的交互，但是本篇文章是vue和iOS的交互，而且iOS使用的是JSBridge第三方框架实现和vue的交互，通信
+[iOS WebView和JS的交互](https://www.jianshu.com/p/3fea43b882eb)都是`iOS`和`js`的交互，但是本篇文章是`vue`和`iOS`的交互，而且`iOS`使用的是`JSBridge`第三方框架实现和`vue`的交互，通信
 
-### iOS的实现
+### `iOS`的实现
 
-首先创建一个iOS工程，引入WebViewJavascriptBridge第三方框架，使用pod还是自己手动导入都可以
+首先创建一个`iOS`工程，引入`WebViewJavascriptBridge`第三方框架，使用`pod`还是自己手动导入都可以
 
 
 下面看一下具体实现
 
-创建WKWebview，初始化WebViewJavascriptBridge，设置WebViewJavascriptBridge,WKWebView的代理
+创建`WKWebview`，初始化`WebViewJavascriptBridge`，设置`WebViewJavascriptBridge`,`WKWebView`的代理
 
 ```
 // 初始化webview
@@ -35,9 +35,9 @@
 ```
 
 ### 使用方法
-iOS调用js的实现
-需要WebViewJavascriptBridge使用callHandler调用js注册的方法
-`ocCallJS`方法需要在js中注册
+`iOS`调用`js`的实现
+需要`WebViewJavascriptBridge`使用`callHandler`调用`js`注册的方法
+`ocCallJS`方法需要在`js`中注册
 ```
 [self.bridge callHandler:@"ocCallJs" data:@"123" responseCallback:^(id responseData) {
 		NSLog(@"responseData=%@",responseData);
@@ -45,9 +45,9 @@ iOS调用js的实现
 
 ```
 
-js调用iOS的实现
-需要iOS注册一个方法以供js回调
-`jsCallOc`方法需要通过jsbridge注册
+`js`调用`iOS`的实现
+需要`iOS`注册一个方法以供`js`回调
+`jsCallOc`方法需要通过`jsbridge`注册
 ```
 [self.bridge registerHandler:@"jsCallOc" handler:^(id data, WVJBResponseCallback responseCallback) {
 		//将base64字符串转为NSData
@@ -65,9 +65,9 @@ js调用iOS的实现
 		}
 	}];
 ```
-### vue的实现
+### `vue`的实现
 
-封装一个JSBridge插件
+封装一个`JSBridge`插件
 
 ```
 /*这段代码是固定的，必须要放到js中*/
@@ -106,7 +106,7 @@ export default {
 
 ## 使用方法
 
-js调用iOS
+`js`调用`iOS`
 
 ```
 this.$bridge.callhandler("jsCallOc",image.replace("data:image/jpeg;base64,",""),(responseData)=>{
@@ -114,7 +114,7 @@ this.$bridge.callhandler("jsCallOc",image.replace("data:image/jpeg;base64,",""),
         })
 ```
 
-iOS调用js
+`iOS`调用`js`
 
 ```
 this.$bridge.registerhandler('ocCallJs', (data, responseCallback) => {
