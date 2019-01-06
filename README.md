@@ -125,4 +125,4 @@ this.$bridge.registerhandler('ocCallJs', (data, responseCallback) => {
 
 效果
 
-![](http://upload-images.jianshu.io/upload_images/2152694-fa5fe528e4ba1382.gif?imageMogr2/auto-orient/strip)
+![](https://github.com/liuboshuo/iOSWebViewJSBridgeInteractive/blob/master/images/1.gif)
